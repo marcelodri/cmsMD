@@ -1,0 +1,12 @@
+RewriteEngine on
+
+RewriteBase /web/md/cmsMD/
+
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+# Bloqueo el acceso al CHANGELOG y al README
+RewriteCond $1 ^(CHANGELOG\.md|README\.md)$
+RewriteRule ^(.*)$ - [R=404,L]
